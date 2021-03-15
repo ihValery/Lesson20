@@ -56,15 +56,23 @@
 		80CCEDD225FF852B002BF099 /* Lesson20 */ = {
 			isa = PBXGroup;
 			children = (
-				80CCEDD325FF852B002BF099 /* AppDelegate.swift */,
-				80CCEDD525FF852B002BF099 /* SceneDelegate.swift */,
 				80CCEDD725FF852B002BF099 /* ViewController.swift */,
 				80CCEDD925FF852B002BF099 /* Main.storyboard */,
+				80CCEDE825FF853E002BF099 /* System32 */,
+			);
+			path = Lesson20;
+			sourceTree = "<group>";
+		};
+		80CCEDE825FF853E002BF099 /* System32 */ = {
+			isa = PBXGroup;
+			children = (
+				80CCEDD325FF852B002BF099 /* AppDelegate.swift */,
+				80CCEDD525FF852B002BF099 /* SceneDelegate.swift */,
 				80CCEDDC25FF852E002BF099 /* Assets.xcassets */,
 				80CCEDDE25FF852E002BF099 /* LaunchScreen.storyboard */,
 				80CCEDE125FF852E002BF099 /* Info.plist */,
 			);
-			path = Lesson20;
+			path = System32;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +304,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ihValery.Lesson20;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -315,7 +323,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ihValery.Lesson20;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
