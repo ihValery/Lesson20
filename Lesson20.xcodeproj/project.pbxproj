@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		80CCEDD425FF852B002BF099 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDD325FF852B002BF099 /* AppDelegate.swift */; };
 		80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDD525FF852B002BF099 /* SceneDelegate.swift */; };
-		80CCEDD825FF852B002BF099 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDD725FF852B002BF099 /* ViewController.swift */; };
 		80CCEDDB25FF852B002BF099 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDD925FF852B002BF099 /* Main.storyboard */; };
 		80CCEDDD25FF852E002BF099 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDDC25FF852E002BF099 /* Assets.xcassets */; };
 		80CCEDE025FF852E002BF099 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDDE25FF852E002BF099 /* LaunchScreen.storyboard */; };
@@ -19,7 +18,6 @@
 		80CCEDD025FF852B002BF099 /* Lesson20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CCEDD325FF852B002BF099 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80CCEDD525FF852B002BF099 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		80CCEDD725FF852B002BF099 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		80CCEDDA25FF852B002BF099 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80CCEDDC25FF852E002BF099 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80CCEDDF25FF852E002BF099 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,7 +54,6 @@
 		80CCEDD225FF852B002BF099 /* Lesson20 */ = {
 			isa = PBXGroup;
 			children = (
-				80CCEDD725FF852B002BF099 /* ViewController.swift */,
 				80CCEDD925FF852B002BF099 /* Main.storyboard */,
 				80CCEDE825FF853E002BF099 /* System32 */,
 			);
@@ -145,7 +142,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80CCEDD825FF852B002BF099 /* ViewController.swift in Sources */,
 				80CCEDD425FF852B002BF099 /* AppDelegate.swift in Sources */,
 				80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */,
 			);
