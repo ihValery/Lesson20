@@ -26,7 +26,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lesson20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSG-xU-N7E">
-                                <rect key="frame" x="246" y="644" width="103" height="30"/>
+                                <rect key="frame" x="246" y="636" width="103" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -40,11 +40,11 @@
                             <constraint firstItem="PZl-qA-Rah" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="556" id="Oel-Pt-MC3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XSG-xU-N7E" secondAttribute="trailing" constant="65" id="R7n-hx-ZvV"/>
                             <constraint firstAttribute="bottom" secondItem="0As-vb-6Fq" secondAttribute="bottom" id="aHI-uS-6ed"/>
-                            <constraint firstItem="PZl-qA-Rah" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="268" id="jQr-Xy-8Qc"/>
+                            <constraint firstItem="PZl-qA-Rah" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="268" id="jQr-Xy-8Qc"/>
                             <constraint firstItem="0As-vb-6Fq" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="koe-s3-CF1"/>
-                            <constraint firstItem="XSG-xU-N7E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="246" id="no9-wt-5L6"/>
+                            <constraint firstItem="XSG-xU-N7E" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="246" id="no9-wt-5L6"/>
                             <constraint firstItem="0As-vb-6Fq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oAS-6V-yEZ"/>
-                            <constraint firstItem="XSG-xU-N7E" firstAttribute="top" secondItem="PZl-qA-Rah" secondAttribute="bottom" constant="8" symbolic="YES" id="qaw-e1-1e4"/>
+                            <constraint firstItem="XSG-xU-N7E" firstAttribute="top" secondItem="PZl-qA-Rah" secondAttribute="bottom" id="qaw-e1-1e4"/>
                         </constraints>
                     </view>
                 </viewController>

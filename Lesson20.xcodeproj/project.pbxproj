@@ -12,6 +12,8 @@
 		80CCEDDB25FF852B002BF099 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDD925FF852B002BF099 /* Main.storyboard */; };
 		80CCEDDD25FF852E002BF099 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDDC25FF852E002BF099 /* Assets.xcassets */; };
 		80CCEDE025FF852E002BF099 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDDE25FF852E002BF099 /* LaunchScreen.storyboard */; };
+		80CCEDED25FF8C07002BF099 /* TasksListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDEC25FF8C07002BF099 /* TasksListTVC.swift */; };
+		80CCEDF325FF8C59002BF099 /* TasksTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDF225FF8C59002BF099 /* TasksTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		80CCEDDC25FF852E002BF099 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80CCEDDF25FF852E002BF099 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80CCEDE125FF852E002BF099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80CCEDEC25FF8C07002BF099 /* TasksListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListTVC.swift; sourceTree = "<group>"; };
+		80CCEDF225FF8C59002BF099 /* TasksTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +58,9 @@
 		80CCEDD225FF852B002BF099 /* Lesson20 */ = {
 			isa = PBXGroup;
 			children = (
-				80CCEDD925FF852B002BF099 /* Main.storyboard */,
+				80CCEDEF25FF8C16002BF099 /* Model */,
+				80CCEDF025FF8C1D002BF099 /* View */,
+				80CCEDF125FF8C28002BF099 /* Controller */,
 				80CCEDE825FF853E002BF099 /* System32 */,
 			);
 			path = Lesson20;
@@ -70,6 +76,30 @@
 				80CCEDE125FF852E002BF099 /* Info.plist */,
 			);
 			path = System32;
+			sourceTree = "<group>";
+		};
+		80CCEDEF25FF8C16002BF099 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		80CCEDF025FF8C1D002BF099 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				80CCEDD925FF852B002BF099 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		80CCEDF125FF8C28002BF099 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				80CCEDEC25FF8C07002BF099 /* TasksListTVC.swift */,
+				80CCEDF225FF8C59002BF099 /* TasksTVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +172,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CCEDF325FF8C59002BF099 /* TasksTVC.swift in Sources */,
 				80CCEDD425FF852B002BF099 /* AppDelegate.swift in Sources */,
+				80CCEDED25FF8C07002BF099 /* TasksListTVC.swift in Sources */,
 				80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,8 +323,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 104;
 				DEVELOPMENT_TEAM = 879U287R5Q;
-				INFOPLIST_FILE = Lesson20/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Lesson20/System32/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,8 +343,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 104;
 				DEVELOPMENT_TEAM = 879U287R5Q;
-				INFOPLIST_FILE = Lesson20/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Lesson20/System32/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
