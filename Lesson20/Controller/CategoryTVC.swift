@@ -1,7 +1,7 @@
 import UIKit
 import RealmSwift
 
-class TasksListTVC: UITableViewController
+class CategoryTVC: UITableViewController
 {
     //Results это коллекция - в реальном времени
     var tasksLists: Results<TasksList>!
@@ -11,7 +11,29 @@ class TasksListTVC: UITableViewController
         super.viewDidLoad()
         //Получаем живую коллекцию всех задач realm
         tasksLists = realm.objects(TasksList.self)
+        title = "Списки"
+        
         designBackground()
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    @IBAction func addAction(_ sender: Any)
+    {
+        alertForAddAndUpdateList()
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        guard let destination = segue.destination as? TasksTVC else { return }
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        destination.currentTasksList = tasksLists[indexPath.row]
     }
 
     // MARK: - Table view data source
@@ -27,6 +49,12 @@ class TasksListTVC: UITableViewController
         let tasksList = tasksLists[indexPath.row]
         cell.textLabel?.text = tasksList.name
         cell.detailTextLabel?.text = "\(tasksList.tasks.count)"
+        
+        cell.textLabel?.layer.shadowOffset = CGSize(width: 1, height: 1)
+        cell.textLabel?.layer.shadowRadius = 7
+        cell.textLabel?.layer.shadowOpacity = 1
+//        cell.textLabel?.layer.shadowColor = .init(red: 1, green: 1, blue: 1, alpha: 1)
+        cell.textLabel?.layer.shadowColor = .init(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
 
         return cell
     }
@@ -38,7 +66,7 @@ class TasksListTVC: UITableViewController
         navigationController?.navigationBar.barTintColor =
             UIColor(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
         
-        let backgroundImage = UIImage(named: "backGroundWB")
+        let backgroundImage = UIImage(named: "backGroundWB2")
         let imageView = UIImageView(image: backgroundImage)
         imageView.contentMode = .scaleAspectFill
         tableView.backgroundView = imageView
@@ -51,31 +79,5 @@ class TasksListTVC: UITableViewController
     {
         cell.backgroundColor = .clear
 //        cell.backgroundColor = UIColor(white: 1, alpha: 0.3)
-    }
-}
-
-    //MARK: - Extension
-
-extension TasksListTVC
-{
-    private func alertForAddAndUpdateList()
-    {
-        let alert = UIAlertController(title: "New list", message: nil, preferredStyle: .alert)
-        //Создаем объект UITextField, что бы позже обратиться к placeholder
-        var alertTextField: UITextField!
-        let save = UIAlertAction(title: "Save", style: .default) { _ in
-            guard let text = alertTextField.text, !text.isEmpty else { return }
-        }
-        let cancel = UIAlertAction(title: "Cancel", style: .destructive)
-        
-        alert.addAction(save)
-        alert.addAction(cancel)
-       
-        alert.addTextField { tf in
-            alertTextField = tf
-            let list = ["Список покупок", "Список задач"]
-            alertTextField.placeholder = list.randomElement()
-        }
-        present(alert, animated: true)
     }
 }
