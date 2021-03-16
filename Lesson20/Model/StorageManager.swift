@@ -5,10 +5,17 @@ let realm = try! Realm()
 
 class StorageManager
 {
-    static func saveTasksList(_ tasksLists: [TasksList])
+    static func saveTasksList(_ tasksLists: TasksList)
     {
         try! realm.write {
             realm.add(tasksLists)
+        }
+    }
+    
+    static func saveTask(_ tasksLists: TasksList, task: Task)
+    {
+        try! realm.write {
+            tasksLists.tasks.append(task)
         }
     }
 }
@@ -31,7 +38,6 @@ class TasksList: Object
     //Тип Данных (коллекция) самого RealmSwift
     //List <Object> - используется для отношений 'один ко многим'
     let tasks = List<Task>()
-    
     //Как это выглядит в самом swift
     //let tasks: [Task] = []
 }

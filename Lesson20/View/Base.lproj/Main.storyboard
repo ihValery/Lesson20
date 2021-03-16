@@ -10,7 +10,7 @@
         <!--Task Lists-->
         <scene sceneID="wyB-Gz-UYn">
             <objects>
-                <tableViewController storyboardIdentifier="TasksListSB" id="uCQ-De-5gr" customClass="TasksListTVC" customModule="Lesson20" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TasksListSB" id="uCQ-De-5gr" customClass="CategoryTVC" customModule="Lesson20" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q8G-8F-jRl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,13 +19,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="A-Z"/>
-                                <segment title="Date"/>
+                                <segment title="по Алфавиту"/>
+                                <segment title="по Дате создания"/>
                             </segments>
                             <color key="selectedSegmentTintColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         </segmentedControl>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellTask" textLabel="Hde-qT-xLn" detailTextLabel="sFh-gV-99l" style="IBUITableViewCellStyleValue1" id="1Oz-TS-LOz">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellTasks" textLabel="Hde-qT-xLn" detailTextLabel="sFh-gV-99l" style="IBUITableViewCellStyleValue1" id="1Oz-TS-LOz">
                                 <rect key="frame" x="0.0" y="60" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Oz-TS-LOz" id="fJU-37-KD8">
@@ -49,7 +49,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="qzf-bB-bRb" kind="show" identifier="goToTasks" id="XYL-fs-JCc"/>
+                                    <segue destination="qzf-bB-bRb" kind="show" identifier="goToTasks" id="wPX-5x-Ib6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -58,7 +58,13 @@
                             <outlet property="delegate" destination="uCQ-De-5gr" id="M8B-I7-hC1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Task Lists" id="0vn-qO-zpV"/>
+                    <navigationItem key="navigationItem" title="Task Lists" id="0vn-qO-zpV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rU7-hj-oNF">
+                            <connections>
+                                <action selector="addAction:" destination="uCQ-De-5gr" id="zCb-ON-QT4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="czX-3M-w9M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -68,16 +74,16 @@
         <scene sceneID="rwA-w4-ffe">
             <objects>
                 <tableViewController storyboardIdentifier="TasksSB" id="qzf-bB-bRb" customClass="TasksTVC" customModule="Lesson20" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="j0f-HY-uf8">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="j0f-HY-uf8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellItem" textLabel="PZg-pV-ReP" detailTextLabel="aLo-j4-QF9" style="IBUITableViewCellStyleSubtitle" id="grc-XS-yi3">
-                                <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="cellItem" textLabel="PZg-pV-ReP" detailTextLabel="aLo-j4-QF9" style="IBUITableViewCellStyleSubtitle" id="grc-XS-yi3">
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="grc-XS-yi3" id="SmE-Hy-CAR">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PZg-pV-ReP">
@@ -96,6 +102,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -103,7 +110,13 @@
                             <outlet property="delegate" destination="qzf-bB-bRb" id="gVS-FK-7eY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Ra9-5W-pYl"/>
+                    <navigationItem key="navigationItem" id="Ra9-5W-pYl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0hc-kh-5D9">
+                            <connections>
+                                <action selector="addTaskAction:" destination="qzf-bB-bRb" id="Kv2-Pk-jAg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n6r-yS-wTH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,9 +126,10 @@
         <scene sceneID="AiS-IV-nZJ">
             <objects>
                 <navigationController id="iAj-cn-cJg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RHE-7I-hxa">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="RHE-7I-hxa">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemGrayColor"/>
                     </navigationBar>
                     <connections>
                         <segue destination="uCQ-De-5gr" kind="relationship" relationship="rootViewController" id="rgv-yZ-952"/>

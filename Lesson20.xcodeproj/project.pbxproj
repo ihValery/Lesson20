@@ -3,23 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8015AF18260128760065A2BF /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8015AF17260128760065A2BF /* Extension.swift */; };
 		80845FBF25FFA7E300AA4710 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80845FBE25FFA7E300AA4710 /* StorageManager.swift */; };
 		80CCEDD425FF852B002BF099 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDD325FF852B002BF099 /* AppDelegate.swift */; };
 		80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDD525FF852B002BF099 /* SceneDelegate.swift */; };
 		80CCEDDB25FF852B002BF099 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDD925FF852B002BF099 /* Main.storyboard */; };
 		80CCEDDD25FF852E002BF099 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDDC25FF852E002BF099 /* Assets.xcassets */; };
 		80CCEDE025FF852E002BF099 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDDE25FF852E002BF099 /* LaunchScreen.storyboard */; };
-		80CCEDED25FF8C07002BF099 /* TasksListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDEC25FF8C07002BF099 /* TasksListTVC.swift */; };
+		80CCEDED25FF8C07002BF099 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDEC25FF8C07002BF099 /* CategoryTVC.swift */; };
 		80CCEDF325FF8C59002BF099 /* TasksTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDF225FF8C59002BF099 /* TasksTVC.swift */; };
 		80E739272600AD2200CD7471 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 80E739262600AD2200CD7471 /* RealmSwift */; };
 		80E739292600AD2200CD7471 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 80E739282600AD2200CD7471 /* Realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8015AF17260128760065A2BF /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		80845FBE25FFA7E300AA4710 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		80CCEDD025FF852B002BF099 /* Lesson20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CCEDD325FF852B002BF099 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +30,7 @@
 		80CCEDDC25FF852E002BF099 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80CCEDDF25FF852E002BF099 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80CCEDE125FF852E002BF099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80CCEDEC25FF8C07002BF099 /* TasksListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListTVC.swift; sourceTree = "<group>"; };
+		80CCEDEC25FF8C07002BF099 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		80CCEDF225FF8C59002BF099 /* TasksTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,6 +47,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8015AF152601283E0065A2BF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8015AF17260128760065A2BF /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		8015AF162601284F0065A2BF /* _____________________ */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "_____________________";
+			sourceTree = "<group>";
+		};
 		80CCEDC725FF852B002BF099 = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +69,7 @@
 				80CCEDD125FF852B002BF099 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		80CCEDD125FF852B002BF099 /* Products */ = {
 			isa = PBXGroup;
@@ -67,6 +85,8 @@
 				80CCEDEF25FF8C16002BF099 /* Model */,
 				80CCEDF025FF8C1D002BF099 /* View */,
 				80CCEDF125FF8C28002BF099 /* Controller */,
+				8015AF162601284F0065A2BF /* _____________________ */,
+				8015AF152601283E0065A2BF /* Extension */,
 				80CCEDE825FF853E002BF099 /* System32 */,
 			);
 			path = Lesson20;
@@ -103,7 +123,7 @@
 		80CCEDF125FF8C28002BF099 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				80CCEDEC25FF8C07002BF099 /* TasksListTVC.swift */,
+				80CCEDEC25FF8C07002BF099 /* CategoryTVC.swift */,
 				80CCEDF225FF8C59002BF099 /* TasksTVC.swift */,
 			);
 			path = Controller;
@@ -148,7 +168,7 @@
 				};
 			};
 			buildConfigurationList = 80CCEDCB25FF852B002BF099 /* Build configuration list for PBXProject "Lesson20" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -189,7 +209,8 @@
 				80CCEDF325FF8C59002BF099 /* TasksTVC.swift in Sources */,
 				80CCEDD425FF852B002BF099 /* AppDelegate.swift in Sources */,
 				80845FBF25FFA7E300AA4710 /* StorageManager.swift in Sources */,
-				80CCEDED25FF8C07002BF099 /* TasksListTVC.swift in Sources */,
+				8015AF18260128760065A2BF /* Extension.swift in Sources */,
+				80CCEDED25FF8C07002BF099 /* CategoryTVC.swift in Sources */,
 				80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
