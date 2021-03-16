@@ -6,6 +6,26 @@ class TasksListTVC: UITableViewController
     {
         super.viewDidLoad()
         designBackground()
+        
+        let shoppingList = TasksList()
+        shoppingList.name = "Shopping List"
+
+        let moviesList = TasksList(value: ["Movies list", Date(), [["Green miles"],["8 miles", "", Date(), true]]])
+
+        let milk = Task()
+        milk.name = "Milk"
+        milk.note = "2L"
+
+        let bread = Task(value: ["Bread", "", Date(), true])
+        let apple = Task(value: ["name": "Apples", "note": "2Kg"/*, "isComplete":"true"*/])
+
+        shoppingList.tasks.append(milk)
+        shoppingList.tasks.insert(contentsOf: [bread, apple], at: 1)
+
+        DispatchQueue.main.async
+        {
+            StorageManager.saveTasksList([shoppingList, moviesList])
+        }
     }
 
     // MARK: - Table view data source
@@ -30,7 +50,8 @@ class TasksListTVC: UITableViewController
     
     func designBackground()
     {
-        navigationController?.navigationBar.barTintColor = UIColor(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
+        navigationController?.navigationBar.barTintColor =
+            UIColor(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
         
         let backgroundImage = UIImage(named: "backGroundWB")
         let imageView = UIImageView(image: backgroundImage)

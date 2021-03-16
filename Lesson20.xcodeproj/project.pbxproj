@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		80845FB925FF9E5A00AA4710 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80845FB825FF9E5A00AA4710 /* Task.swift */; };
-		80845FBC25FF9E7700AA4710 /* TasksList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80845FBB25FF9E7700AA4710 /* TasksList.swift */; };
+		80845FBF25FFA7E300AA4710 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80845FBE25FFA7E300AA4710 /* StorageManager.swift */; };
 		80CCEDD425FF852B002BF099 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDD325FF852B002BF099 /* AppDelegate.swift */; };
 		80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDD525FF852B002BF099 /* SceneDelegate.swift */; };
 		80CCEDDB25FF852B002BF099 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDD925FF852B002BF099 /* Main.storyboard */; };
@@ -16,14 +15,12 @@
 		80CCEDE025FF852E002BF099 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CCEDDE25FF852E002BF099 /* LaunchScreen.storyboard */; };
 		80CCEDED25FF8C07002BF099 /* TasksListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDEC25FF8C07002BF099 /* TasksListTVC.swift */; };
 		80CCEDF325FF8C59002BF099 /* TasksTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDF225FF8C59002BF099 /* TasksTVC.swift */; };
-		910C9BEA1134E84B65694513 /* Pods_Lesson20.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480BA6888DB558C1909354F6 /* Pods_Lesson20.framework */; };
+		80E739272600AD2200CD7471 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 80E739262600AD2200CD7471 /* RealmSwift */; };
+		80E739292600AD2200CD7471 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 80E739282600AD2200CD7471 /* Realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A3B29DC680BCB097E74F910 /* Pods-Lesson20.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson20.debug.xcconfig"; path = "Target Support Files/Pods-Lesson20/Pods-Lesson20.debug.xcconfig"; sourceTree = "<group>"; };
-		480BA6888DB558C1909354F6 /* Pods_Lesson20.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lesson20.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		80845FB825FF9E5A00AA4710 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		80845FBB25FF9E7700AA4710 /* TasksList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksList.swift; sourceTree = "<group>"; };
+		80845FBE25FFA7E300AA4710 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		80CCEDD025FF852B002BF099 /* Lesson20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CCEDD325FF852B002BF099 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80CCEDD525FF852B002BF099 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,7 +30,6 @@
 		80CCEDE125FF852E002BF099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80CCEDEC25FF8C07002BF099 /* TasksListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListTVC.swift; sourceTree = "<group>"; };
 		80CCEDF225FF8C59002BF099 /* TasksTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTVC.swift; sourceTree = "<group>"; };
-		9ECE5BABE227EE71F4748515 /* Pods-Lesson20.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson20.release.xcconfig"; path = "Target Support Files/Pods-Lesson20/Pods-Lesson20.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,29 +37,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				910C9BEA1134E84B65694513 /* Pods_Lesson20.framework in Frameworks */,
+				80E739292600AD2200CD7471 /* Realm in Frameworks */,
+				80E739272600AD2200CD7471 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5C9E50175222B7955BD3BEA1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2A3B29DC680BCB097E74F910 /* Pods-Lesson20.debug.xcconfig */,
-				9ECE5BABE227EE71F4748515 /* Pods-Lesson20.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		80CCEDC725FF852B002BF099 = {
 			isa = PBXGroup;
 			children = (
 				80CCEDD225FF852B002BF099 /* Lesson20 */,
 				80CCEDD125FF852B002BF099 /* Products */,
-				5C9E50175222B7955BD3BEA1 /* Pods */,
-				9D652E203068ADE9378DE292 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,8 +87,7 @@
 		80CCEDEF25FF8C16002BF099 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				80845FB825FF9E5A00AA4710 /* Task.swift */,
-				80845FBB25FF9E7700AA4710 /* TasksList.swift */,
+				80845FBE25FFA7E300AA4710 /* StorageManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -124,14 +109,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		9D652E203068ADE9378DE292 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				480BA6888DB558C1909354F6 /* Pods_Lesson20.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,17 +116,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80CCEDE425FF852E002BF099 /* Build configuration list for PBXNativeTarget "Lesson20" */;
 			buildPhases = (
-				CD3B76B27E6F1FCE5485C5E8 /* [CP] Check Pods Manifest.lock */,
 				80CCEDCC25FF852B002BF099 /* Sources */,
 				80CCEDCD25FF852B002BF099 /* Frameworks */,
 				80CCEDCE25FF852B002BF099 /* Resources */,
-				21221228A9547631A3693EC6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Lesson20;
+			packageProductDependencies = (
+				80E739262600AD2200CD7471 /* RealmSwift */,
+				80E739282600AD2200CD7471 /* Realm */,
+			);
 			productName = Lesson20;
 			productReference = 80CCEDD025FF852B002BF099 /* Lesson20.app */;
 			productType = "com.apple.product-type.application";
@@ -177,6 +156,9 @@
 				Base,
 			);
 			mainGroup = 80CCEDC725FF852B002BF099;
+			packageReferences = (
+				80E739252600AD2200CD7471 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 80CCEDD125FF852B002BF099 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -199,57 +181,14 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		21221228A9547631A3693EC6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lesson20/Pods-Lesson20-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lesson20/Pods-Lesson20-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lesson20/Pods-Lesson20-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CD3B76B27E6F1FCE5485C5E8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Lesson20-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		80CCEDCC25FF852B002BF099 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80845FBC25FF9E7700AA4710 /* TasksList.swift in Sources */,
 				80CCEDF325FF8C59002BF099 /* TasksTVC.swift in Sources */,
 				80CCEDD425FF852B002BF099 /* AppDelegate.swift in Sources */,
-				80845FB925FF9E5A00AA4710 /* Task.swift in Sources */,
+				80845FBF25FFA7E300AA4710 /* StorageManager.swift in Sources */,
 				80CCEDED25FF8C07002BF099 /* TasksListTVC.swift in Sources */,
 				80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */,
 			);
@@ -395,7 +334,6 @@
 		};
 		80CCEDE525FF852E002BF099 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A3B29DC680BCB097E74F910 /* Pods-Lesson20.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -416,7 +354,6 @@
 		};
 		80CCEDE625FF852E002BF099 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9ECE5BABE227EE71F4748515 /* Pods-Lesson20.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -457,6 +394,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		80E739252600AD2200CD7471 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.7.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		80E739262600AD2200CD7471 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80E739252600AD2200CD7471 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		80E739282600AD2200CD7471 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80E739252600AD2200CD7471 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 80CCEDC825FF852B002BF099 /* Project object */;
 }
