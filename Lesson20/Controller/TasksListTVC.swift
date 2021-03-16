@@ -1,50 +1,35 @@
 import UIKit
+import RealmSwift
 
 class TasksListTVC: UITableViewController
 {
+    //Results это коллекция - в реальном времени
+    var tasksLists: Results<TasksList>!
+        
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        //Получаем живую коллекцию всех задач realm
+        tasksLists = realm.objects(TasksList.self)
         designBackground()
-        
-        let shoppingList = TasksList()
-        shoppingList.name = "Shopping List"
-
-        let moviesList = TasksList(value: ["Movies list", Date(), [["Green miles"],["8 miles", "", Date(), true]]])
-
-        let milk = Task()
-        milk.name = "Milk"
-        milk.note = "2L"
-
-        let bread = Task(value: ["Bread", "", Date(), true])
-        let apple = Task(value: ["name": "Apples", "note": "2Kg"/*, "isComplete":"true"*/])
-
-        shoppingList.tasks.append(milk)
-        shoppingList.tasks.insert(contentsOf: [bread, apple], at: 1)
-
-        DispatchQueue.main.async
-        {
-            StorageManager.saveTasksList([shoppingList, moviesList])
-        }
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 0
+        return tasksLists.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
      {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellTasks", for: indexPath)
+        let tasksList = tasksLists[indexPath.row]
+        cell.textLabel?.text = tasksList.name
+        cell.detailTextLabel?.text = "\(tasksList.tasks.count)"
 
         return cell
     }
-    */
 
     //MARK: - Design
     
