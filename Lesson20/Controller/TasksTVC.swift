@@ -3,7 +3,7 @@ import RealmSwift
 
 class TasksTVC: UITableViewController
 {
-    var currentTasksList: TasksList! {
+    var currentTasksList: Category! {
         didSet {
             self.title = currentTasksList.name
         }
@@ -28,7 +28,6 @@ class TasksTVC: UITableViewController
         completedTasks = currentTasksList.tasks.filter("isComplete = true")
         
         tableView.reloadData(with: .automatic)
-//        tableView.reloadData()
     }
     @IBAction func addTaskAction(_ sender: Any)
     {

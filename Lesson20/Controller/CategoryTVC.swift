@@ -4,13 +4,13 @@ import RealmSwift
 class CategoryTVC: UITableViewController
 {
     //Results это коллекция - в реальном времени
-    var tasksLists: Results<TasksList>!
+    var tasksLists: Results<Category>!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         //Получаем живую коллекцию всех задач realm
-        tasksLists = realm.objects(TasksList.self)
+        tasksLists = realm.objects(Category.self)
         title = "Списки"
         designBackground()
     }
@@ -18,7 +18,7 @@ class CategoryTVC: UITableViewController
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        tableView.reloadData(with: .automatic)
     }
     
     // MARK: - Navigation
@@ -35,8 +35,7 @@ class CategoryTVC: UITableViewController
         } else {
             tasksLists = tasksLists.sorted(byKeyPath: "date")
         }
-        
-        tableView.reloadData()
+        tableView.reloadData(with: .automatic)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
