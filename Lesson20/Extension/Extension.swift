@@ -152,3 +152,9 @@ public extension StringProtocol
 {
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
 }
+
+extension UITableView {
+    func reloadData(with animation: UITableView.RowAnimation) {
+        reloadSections(IndexSet(integersIn: 0..<numberOfSections), with: animation)
+    }
+}
