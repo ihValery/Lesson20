@@ -6,7 +6,7 @@ extension CategoryTVC
     public func alertForAddAndUpdateList(_ listName: TasksList? = nil, completion: (() -> Void)? = nil)
     {
         let title = listName == nil ? "Новый список" : "Хотите изменить?"
-        let titleButton = listName == nil ? "Добавить" : "Переименовать"
+        let titleButton = listName == nil ? "Добавить" : "Изменить"
         
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Отмена", style: .cancel)
@@ -15,6 +15,7 @@ extension CategoryTVC
             
             if let listName = listName {
                 StorageManager.editTasksList(listName, newName: newList)
+                //Оставил поле пусты - ничего не делаем
                 if completion != nil { completion!() }
             } else {
                 let taskList = TasksList()
@@ -129,13 +130,4 @@ public func designCell(with cell: UITableViewCell)
 public extension StringProtocol
 {
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
-}
-
-extension UITableView
-{
-    public func reloadData(with animation: UITableView.RowAnimation)
-    {
-        reloadSections(IndexSet(integersIn: 0..<numberOfSections), with: animation)
-    }
-    
 }

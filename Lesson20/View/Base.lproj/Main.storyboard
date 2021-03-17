@@ -23,6 +23,9 @@
                                 <segment title="по Дате создания"/>
                             </segments>
                             <color key="selectedSegmentTintColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="didSelectSorted:" destination="uCQ-De-5gr" eventType="valueChanged" id="DVb-5F-Sn7"/>
+                            </connections>
                         </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellTasks" textLabel="Hde-qT-xLn" detailTextLabel="sFh-gV-99l" style="IBUITableViewCellStyleValue1" id="1Oz-TS-LOz">

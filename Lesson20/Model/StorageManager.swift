@@ -41,6 +41,13 @@ class StorageManager
             realm.delete(task)
         }
     }
+    
+    static func makeAllDone(_ tasksList: TasksList)
+    {
+        try! realm.write {
+            tasksList.tasks.setValue(true, forKey: "isComplete")
+        }
+    }
 }
 
 //Так как наследуемся от другого класса Object (typealias Object = RealmSwiftObject)
