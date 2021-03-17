@@ -119,7 +119,7 @@ class TasksTVC: UITableViewController
         var task: Task!
         task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
         
-        let action = UIContextualAction(style: .destructive, title: "done") { (_, _, completion) in
+        let action = UIContextualAction(style: .normal, title: "done") { (_, _, completion) in
             StorageManager.makeDone(task)
             self.sortingOpenOrComplited()
             completion(true)

@@ -93,7 +93,7 @@
                             <outlet property="delegate" destination="uCQ-De-5gr" id="M8B-I7-hC1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Task Lists" id="0vn-qO-zpV">
+                    <navigationItem key="navigationItem" title="Task Lists" largeTitleDisplayMode="always" id="0vn-qO-zpV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rU7-hj-oNF">
                             <connections>
                                 <action selector="addAction:" destination="uCQ-De-5gr" id="zCb-ON-QT4"/>
@@ -145,7 +145,7 @@
                             <outlet property="delegate" destination="qzf-bB-bRb" id="gVS-FK-7eY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Ra9-5W-pYl">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="Ra9-5W-pYl">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0hc-kh-5D9">
                             <connections>
                                 <action selector="addTaskAction:" destination="qzf-bB-bRb" id="Kv2-Pk-jAg"/>

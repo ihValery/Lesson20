@@ -61,13 +61,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		8015AF162601284F0065A2BF /* _____________________ */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "_____________________";
-			sourceTree = "<group>";
-		};
 		80CCEDC725FF852B002BF099 = {
 			isa = PBXGroup;
 			children = (
@@ -91,7 +84,6 @@
 				80CCEDEF25FF8C16002BF099 /* Model */,
 				80CCEDF025FF8C1D002BF099 /* View */,
 				80CCEDF125FF8C28002BF099 /* Controller */,
-				8015AF162601284F0065A2BF /* _____________________ */,
 				8015AF152601283E0065A2BF /* Extension */,
 				80CCEDE825FF853E002BF099 /* System32 */,
 			);

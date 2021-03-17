@@ -22,7 +22,7 @@ extension CategoryTVC
                 taskList.name = newList
                 
                 StorageManager.saveTasksList(taskList)
-                self.tableView.insertRows(at: [IndexPath(row: self.tasksLists.count - 1, section: 0)], with: .automatic)
+                self.tableView.insertRows(at: [IndexPath(row: self.category.count - 1, section: 0)], with: .automatic)
             }
         }
         
