@@ -20,7 +20,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="по Алфавиту"/>
-                                <segment title="по Дате создания"/>
+                                <segment title="по Дате"/>
                             </segments>
                             <color key="selectedSegmentTintColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <connections>

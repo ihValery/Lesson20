@@ -3,7 +3,7 @@ import UIKit
 
 extension CategoryTVC
 {
-    public func alertForAddAndUpdateList(_ listName: TasksList? = nil, completion: (() -> Void)? = nil)
+    public func alertForAddAndUpdateList(_ listName: Category? = nil, completion: (() -> Void)? = nil)
     {
         let title = listName == nil ? "Новый список" : "Хотите изменить?"
         let titleButton = listName == nil ? "Добавить" : "Изменить"
@@ -18,12 +18,11 @@ extension CategoryTVC
                 //Оставил поле пусты - ничего не делаем
                 if completion != nil { completion!() }
             } else {
-                let taskList = TasksList()
+                let taskList = Category()
                 taskList.name = newList
                 
                 StorageManager.saveTasksList(taskList)
-//                self.tableView.insertRows(at: [IndexPath(row: self.tasksLists.count - 1, section: 0)], with: .automatic)
-                self.tableView.reloadData()
+                self.tableView.insertRows(at: [IndexPath(row: self.tasksLists.count - 1, section: 0)], with: .automatic)
             }
         }
         

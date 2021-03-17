@@ -3,7 +3,7 @@ import RealmSwift
 
 class CategoryTVCell: UITableViewCell
 {
-    var tastasksList: TasksList!
+    var tastasksList: Category!
     
     @IBOutlet weak var titleCustom: UILabel!
     @IBOutlet weak var subTitleCustom: UILabel!
@@ -15,7 +15,7 @@ class CategoryTVCell: UITableViewCell
         
     }
     
-    func configure(with tasksList: TasksList)
+    func configure(with tasksList: Category)
     {
         let currentTask = tasksList.tasks.filter("isComplete = false")
         let complitedTask = tasksList.tasks.filter("isComplete = true")
