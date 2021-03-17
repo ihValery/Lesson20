@@ -12,14 +12,14 @@ class CategoryTVC: UITableViewController
         //Получаем живую коллекцию всех задач realm
         tasksLists = realm.objects(TasksList.self)
         title = "Списки"
-        
         designBackground()
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        tableView.reloadData(with: .automatic)
+//        tableView.reloadData()
     }
     
     @IBAction func addAction(_ sender: Any)
@@ -49,35 +49,54 @@ class CategoryTVC: UITableViewController
         let tasksList = tasksLists[indexPath.row]
         cell.textLabel?.text = tasksList.name
         cell.detailTextLabel?.text = "\(tasksList.tasks.count)"
-        
-        cell.textLabel?.layer.shadowOffset = CGSize(width: 1, height: 1)
-        cell.textLabel?.layer.shadowRadius = 7
-        cell.textLabel?.layer.shadowOpacity = 1
-//        cell.textLabel?.layer.shadowColor = .init(red: 1, green: 1, blue: 1, alpha: 1)
-        cell.textLabel?.layer.shadowColor = .init(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
-
+        designCell(with: cell)
         return cell
     }
+    
+    //MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let edit = editAction(at: indexPath)
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete, edit])
+    }
+    
+    func editAction(at indexPath: IndexPath) -> UIContextualAction
+    {
+        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, completion) in
+            self.alertForAddAndUpdateList(self.tasksLists[indexPath.row]) {
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            completion(true)
+        }
+        action.backgroundColor = .systemGreen
+        action.image = UIImage(systemName: "rectangle.and.pencil.and.ellipsis")
+        return action
+    }
+    
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction
+    {
+        let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, completion) in
+            StorageManager.deleteTasksList(self.tasksLists[indexPath.row])
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        action.backgroundColor = .systemRed
+        action.image = UIImage(systemName: "trash")
+        return action
+    }
 
-    //MARK: - Design
-    
-    func designBackground()
-    {
-        navigationController?.navigationBar.barTintColor =
-            UIColor(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
-        
-        let backgroundImage = UIImage(named: "backGroundWB2")
-        let imageView = UIImageView(image: backgroundImage)
-        imageView.contentMode = .scaleAspectFill
-        tableView.backgroundView = imageView
-        
-        //Убираем лишнии линии в таблице
-        tableView.tableFooterView = UIView()
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
-    {
-        cell.backgroundColor = .clear
-//        cell.backgroundColor = UIColor(white: 1, alpha: 0.3)
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+//    {
+//        if editingStyle == .delete {
+//            StorageManager.deleteTasksList(tasksLists[indexPath.row])
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+//    }
 }

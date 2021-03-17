@@ -3,7 +3,11 @@ import RealmSwift
 
 class TasksTVC: UITableViewController
 {
-    var currentTasksList: TasksList!
+    var currentTasksList: TasksList! {
+        didSet {
+            self.title = currentTasksList.name
+        }
+    }
     
     var openTasks: Results<Task>!
     var completedTasks: Results<Task>!
@@ -12,10 +16,11 @@ class TasksTVC: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        title = currentTasksList.name
         sortingOpenOrComplited()
-        designBackground()
+        designBackgroundTask()
     }
+    
+    // MARK: - Navigation
     
     func sortingOpenOrComplited()
     {
@@ -55,36 +60,23 @@ class TasksTVC: UITableViewController
         cell.detailTextLabel?.text = task.note
         
         cell.accessoryType = task.isComplete ? .checkmark : .none
+        designCell(with: cell)
         
         return cell
     }
     
-    //MARK: - Design
+    //MARK: - Table view delegate
     
-    func designBackground()
-    {
-        navigationController?.navigationBar.barTintColor =
-            UIColor(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
-        
-    //        clearsSelectionOnViewWillAppear = true
-        let backgroundImage = UIImage(named: "backGroundWB2")
-        let imageView = UIImageView(image: backgroundImage)
-        imageView.contentMode = .scaleAspectFill
-        tableView.backgroundView = imageView
-        
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = imageView.bounds
-    //    blurView.alpha = 1
-        imageView.addSubview(blurView)
-        
-        //Убираем лишнии линии в таблице
-        tableView.tableFooterView = UIView()
-    }
-
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
-    {
-        cell.backgroundColor = .clear
-    //        cell.backgroundColor = UIColor(white: 1, alpha: 0.3)
-    }
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+//    {
+//        return true
+//    }
+//
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+//    {
+//        if editingStyle == .delete {
+//            StorageManager.deleteTask(currentTasksList[indexPath.row] as! Task)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+//    }
 }
