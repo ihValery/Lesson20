@@ -3,15 +3,14 @@ import RealmSwift
 
 class TasksTVC: UITableViewController
 {
-    var currentTasksList: Category! {
+    var currentCategory: Category! {
         didSet {
-            self.title = currentTasksList.name
+            self.title = currentCategory.name
         }
     }
     
     private var openTasks: Results<Task>!
     private var completedTasks: Results<Task>!
-    
     
     override func viewDidLoad()
     {
@@ -24,8 +23,8 @@ class TasksTVC: UITableViewController
     
     func sortingOpenOrComplited()
     {
-        openTasks = currentTasksList.tasks.filter("isComplete = false")
-        completedTasks = currentTasksList.tasks.filter("isComplete = true")
+        openTasks = currentCategory.tasks.filter("isComplete = false")
+        completedTasks = currentCategory.tasks.filter("isComplete = true")
         
         tableView.reloadData(with: .automatic)
     }
@@ -57,6 +56,7 @@ class TasksTVC: UITableViewController
         
         var task: Task!
         task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
+        
         cell.textLabel?.text = task.name
         cell.detailTextLabel?.text = task.note
         
@@ -65,6 +65,13 @@ class TasksTVC: UITableViewController
         
         return cell
     }
+    
+//    func sortedTasksBySections(at indexPath: IndexPath) -> [Task]
+//    {
+//        var task: Task!
+//        task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
+//        return task
+//    }
     
     //MARK: - Table view delegate
     
