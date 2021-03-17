@@ -55,8 +55,9 @@ class CategoryTVC: UITableViewController
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
      {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellTasks", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellTasks", for: indexPath) as! CategoryTVCell
         let tasksList = tasksLists[indexPath.row]
+        
         cell.configure(with: tasksList)
         designCell(with: cell)
         return cell

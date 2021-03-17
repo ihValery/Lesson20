@@ -19,6 +19,7 @@
 		80CCEDF325FF8C59002BF099 /* TasksTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDF225FF8C59002BF099 /* TasksTVC.swift */; };
 		80E739272600AD2200CD7471 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 80E739262600AD2200CD7471 /* RealmSwift */; };
 		80E739292600AD2200CD7471 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 80E739282600AD2200CD7471 /* Realm */; };
+		80F0E7BB26023DC20089B254 /* CategoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F0E7BA26023DC20089B254 /* CategoryTVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		80CCEDE125FF852E002BF099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80CCEDEC25FF8C07002BF099 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		80CCEDF225FF8C59002BF099 /* TasksTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTVC.swift; sourceTree = "<group>"; };
+		80F0E7BA26023DC20089B254 /* CategoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				80CCEDEC25FF8C07002BF099 /* CategoryTVC.swift */,
+				80F0E7BA26023DC20089B254 /* CategoryTVCell.swift */,
 				80CCEDF225FF8C59002BF099 /* TasksTVC.swift */,
 			);
 			path = Controller;
@@ -216,6 +219,7 @@
 				8015AF2826022B3B0065A2BF /* Extension + UITableViewCell.swift in Sources */,
 				80CCEDED25FF8C07002BF099 /* CategoryTVC.swift in Sources */,
 				80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */,
+				80F0E7BB26023DC20089B254 /* CategoryTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
