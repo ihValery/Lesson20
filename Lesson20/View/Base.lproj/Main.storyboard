@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="c4K-Ki-bLp">
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="c4K-Ki-bLp">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
@@ -23,6 +23,9 @@
                                 <segment title="по Дате создания"/>
                             </segments>
                             <color key="selectedSegmentTintColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="didSelectSorted:" destination="uCQ-De-5gr" eventType="valueChanged" id="DVb-5F-Sn7"/>
+                            </connections>
                         </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellTasks" textLabel="Hde-qT-xLn" detailTextLabel="sFh-gV-99l" style="IBUITableViewCellStyleValue1" id="1Oz-TS-LOz">
@@ -129,7 +132,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="RHE-7I-hxa">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="systemGrayColor"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
                         <segue destination="uCQ-De-5gr" kind="relationship" relationship="rootViewController" id="rgv-yZ-952"/>

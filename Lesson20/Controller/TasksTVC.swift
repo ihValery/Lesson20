@@ -3,24 +3,30 @@ import RealmSwift
 
 class TasksTVC: UITableViewController
 {
-    var currentTasksList: TasksList!
+    var currentTasksList: TasksList! {
+        didSet {
+            self.title = currentTasksList.name
+        }
+    }
     
-    var openTasks: Results<Task>!
-    var completedTasks: Results<Task>!
+    private var openTasks: Results<Task>!
+    private var completedTasks: Results<Task>!
     
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        title = currentTasksList.name
         sortingOpenOrComplited()
-        designBackground()
+        designBackgroundTask()
     }
+    
+    // MARK: - Navigation
     
     func sortingOpenOrComplited()
     {
         openTasks = currentTasksList.tasks.filter("isComplete = false")
         completedTasks = currentTasksList.tasks.filter("isComplete = true")
+        
         tableView.reloadData()
     }
     @IBAction func addTaskAction(_ sender: Any)
@@ -55,36 +61,71 @@ class TasksTVC: UITableViewController
         cell.detailTextLabel?.text = task.note
         
         cell.accessoryType = task.isComplete ? .checkmark : .none
+        designCell(with: cell)
         
         return cell
     }
     
-    //MARK: - Design
+    //MARK: - Table view delegate
     
-    func designBackground()
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
-        navigationController?.navigationBar.barTintColor =
-            UIColor(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
-        
-    //        clearsSelectionOnViewWillAppear = true
-        let backgroundImage = UIImage(named: "backGroundWB2")
-        let imageView = UIImageView(image: backgroundImage)
-        imageView.contentMode = .scaleAspectFill
-        tableView.backgroundView = imageView
-        
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = imageView.bounds
-    //    blurView.alpha = 1
-        imageView.addSubview(blurView)
-        
-        //Убираем лишнии линии в таблице
-        tableView.tableFooterView = UIView()
+        return true
     }
-
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let done = doneTask(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [done])
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
-        cell.backgroundColor = .clear
-    //        cell.backgroundColor = UIColor(white: 1, alpha: 0.3)
+        let edit = editAction(at: indexPath)
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete, edit])
+    }
+    
+    func editAction(at indexPath: IndexPath) -> UIContextualAction
+    {
+        var task: Task!
+        task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
+        
+        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, completion) in
+            self.alertForAddAndUpdateTask(task)
+            completion(true)
+        }
+        action.backgroundColor = .init(red: 50 / 255, green: 183 / 255, blue: 108 / 255, alpha: 1)
+        action.image = UIImage(systemName: "rectangle.and.pencil.and.ellipsis")
+        return action
+    }
+    
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction
+    {
+        var task: Task!
+        task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
+        
+        let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, completion) in
+            StorageManager.deleteTask(task)
+            self.sortingOpenOrComplited()
+            completion(true)
+        }
+        action.backgroundColor = .init(red: 242 / 255, green: 86 / 255, blue: 77 / 255, alpha: 1)
+        action.image = UIImage(systemName: "trash")
+        return action
+    }
+    
+    func doneTask(at indexPath: IndexPath) -> UIContextualAction
+    {
+        var task: Task!
+        task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
+        
+        let action = UIContextualAction(style: .destructive, title: "done") { (_, _, completion) in
+            StorageManager.makeDone(task)
+            self.sortingOpenOrComplited()
+            completion(true)
+        }
+        action.backgroundColor = .init(red: 50 / 255, green: 186 / 255, blue: 188 / 255, alpha: 1)
+        action.image = UIImage(systemName: "checkmark")
+        return action
     }
 }

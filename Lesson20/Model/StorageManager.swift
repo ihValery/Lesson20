@@ -12,10 +12,55 @@ class StorageManager
         }
     }
     
+    static func deleteTasksList(_ tasksLists: TasksList)
+    {
+        try! realm.write {
+            let tasks = tasksLists.tasks
+            realm.delete(tasks)
+            realm.delete(tasksLists)
+        }
+    }
+    
+    static func editTasksList(_ tasksLists: TasksList, newName: String)
+    {
+        try! realm.write {
+            tasksLists.name = newName
+        }
+    }
+    
     static func saveTask(_ tasksLists: TasksList, task: Task)
     {
         try! realm.write {
             tasksLists.tasks.append(task)
+        }
+    }
+    
+    static func deleteTask(_ task: Task)
+    {
+        try! realm.write {
+            realm.delete(task)
+        }
+    }
+    
+    static func editTask(_ task: Task, newName: String, newNote: String)
+    {
+        try! realm.write {
+            task.name = newName
+            task.note = newNote
+        }
+    }
+    
+    static func makeDone(_ task: Task)
+    {
+        try! realm.write {
+            task.isComplete.toggle()
+        }
+    }
+    
+    static func makeAllDone(_ tasksList: TasksList)
+    {
+        try! realm.write {
+            tasksList.tasks.setValue(true, forKey: "isComplete")
         }
     }
 }

@@ -5,14 +5,13 @@ class CategoryTVC: UITableViewController
 {
     //Results это коллекция - в реальном времени
     var tasksLists: Results<TasksList>!
-        
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         //Получаем живую коллекцию всех задач realm
         tasksLists = realm.objects(TasksList.self)
         title = "Списки"
-        
         designBackground()
     }
     
@@ -22,12 +21,23 @@ class CategoryTVC: UITableViewController
         tableView.reloadData()
     }
     
+    // MARK: - Navigation
+    
     @IBAction func addAction(_ sender: Any)
     {
         alertForAddAndUpdateList()
     }
     
-    // MARK: - Navigation
+    @IBAction func didSelectSorted(_ sender: UISegmentedControl)
+    {
+        if sender.selectedSegmentIndex == 0 {
+            tasksLists = tasksLists.sorted(byKeyPath: "name")
+        } else {
+            tasksLists = tasksLists.sorted(byKeyPath: "date")
+        }
+        
+        tableView.reloadData()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -49,35 +59,59 @@ class CategoryTVC: UITableViewController
         let tasksList = tasksLists[indexPath.row]
         cell.textLabel?.text = tasksList.name
         cell.detailTextLabel?.text = "\(tasksList.tasks.count)"
-        
-        cell.textLabel?.layer.shadowOffset = CGSize(width: 1, height: 1)
-        cell.textLabel?.layer.shadowRadius = 7
-        cell.textLabel?.layer.shadowOpacity = 1
-//        cell.textLabel?.layer.shadowColor = .init(red: 1, green: 1, blue: 1, alpha: 1)
-        cell.textLabel?.layer.shadowColor = .init(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
-
+        designCell(with: cell)
         return cell
     }
-
-    //MARK: - Design
     
-    func designBackground()
+    //MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
-        navigationController?.navigationBar.barTintColor =
-            UIColor(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
-        
-        let backgroundImage = UIImage(named: "backGroundWB2")
-        let imageView = UIImageView(image: backgroundImage)
-        imageView.contentMode = .scaleAspectFill
-        tableView.backgroundView = imageView
-        
-        //Убираем лишнии линии в таблице
-        tableView.tableFooterView = UIView()
+        return true
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
-        cell.backgroundColor = .clear
-//        cell.backgroundColor = UIColor(white: 1, alpha: 0.3)
+        let edit = editAction(at: indexPath)
+        let delete = deleteAction(at: indexPath)
+        let done = doneAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete, edit, done])
+    }
+    
+    func editAction(at indexPath: IndexPath) -> UIContextualAction
+    {
+        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, completion) in
+            self.alertForAddAndUpdateList(self.tasksLists[indexPath.row]) {
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            completion(true)
+        }
+        action.backgroundColor = .init(red: 50 / 255, green: 183 / 255, blue: 108 / 255, alpha: 1)
+        action.image = UIImage(systemName: "rectangle.and.pencil.and.ellipsis")
+        return action
+    }
+    
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction
+    {
+        let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, completion) in
+            StorageManager.deleteTasksList(self.tasksLists[indexPath.row])
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        action.backgroundColor = .init(red: 242 / 255, green: 86 / 255, blue: 77 / 255, alpha: 1)
+        action.image = UIImage(systemName: "trash")
+        return action
+    }
+    
+    func doneAction(at indexPath: IndexPath) -> UIContextualAction
+    {
+        let action = UIContextualAction(style: .normal, title: "done") { (_, _, completion) in
+            StorageManager.makeAllDone(self.tasksLists[indexPath.row])
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        action.backgroundColor = .init(red: 50 / 255, green: 186 / 255, blue: 188 / 255, alpha: 1)
+        action.image = UIImage(systemName: "checkmark")
+        return action
     }
 }

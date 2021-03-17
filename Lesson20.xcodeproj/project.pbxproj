@@ -362,6 +362,7 @@
 				CURRENT_PROJECT_VERSION = 104;
 				DEVELOPMENT_TEAM = 879U287R5Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Lesson20/System32/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -382,6 +383,7 @@
 				CURRENT_PROJECT_VERSION = 104;
 				DEVELOPMENT_TEAM = 879U287R5Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Lesson20/System32/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
