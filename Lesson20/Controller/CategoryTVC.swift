@@ -16,8 +16,8 @@ class CategoryTVC: UITableViewController
         title = "Списки"
         designBackground()
         
-        // Realm notification
-        category = realm.objects(Category.self).sorted(byKeyPath: "name")
+        //Realm уведомление
+        category = realm.objects(Category.self)//.sorted(byKeyPath: "name")
         notificationToken = category.observe { (changes) in
             switch changes {
                 case .initial: break
@@ -53,7 +53,7 @@ class CategoryTVC: UITableViewController
     {
         guard let destination = segue.destination as? TasksTVC else { return }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        destination.currentTasksList = category[indexPath.row]
+        destination.currentCategory = category[indexPath.row]
     }
 
     // MARK: - Table view data source
@@ -66,9 +66,9 @@ class CategoryTVC: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
      {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTasks", for: indexPath) as! CategoryTVCell
-        let tasksList = category[indexPath.row]
+        let categoryIndex = category[indexPath.row]
         
-        cell.configure(with: tasksList)
+        cell.configure(with: categoryIndex)
         designCell(with: cell)
         return cell
     }
@@ -90,11 +90,10 @@ class CategoryTVC: UITableViewController
     
     func editAction(at indexPath: IndexPath) -> UIContextualAction
     {
-        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, completion) in
+        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, _) in
             self.alertForAddAndUpdateList(self.category[indexPath.row]) {
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
             }
-            completion(true)
         }
         action.backgroundColor = .init(red: 50 / 255, green: 183 / 255, blue: 108 / 255, alpha: 1)
         action.image = UIImage(systemName: "rectangle.and.pencil.and.ellipsis")
@@ -103,10 +102,9 @@ class CategoryTVC: UITableViewController
     
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction
     {
-        let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, completion) in
-            StorageManager.deleteTasksList(self.category[indexPath.row])
+        let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, _) in
+            StorageManager.deleteCategory(self.category[indexPath.row])
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            completion(true)
         }
         action.backgroundColor = .init(red: 242 / 255, green: 86 / 255, blue: 77 / 255, alpha: 1)
         action.image = UIImage(systemName: "trash")
@@ -115,10 +113,9 @@ class CategoryTVC: UITableViewController
     
     func doneAction(at indexPath: IndexPath) -> UIContextualAction
     {
-        let action = UIContextualAction(style: .normal, title: "done") { (_, _, completion) in
+        let action = UIContextualAction(style: .normal, title: "done") { (_, _, _) in
             StorageManager.makeAllDone(self.category[indexPath.row])
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
-            completion(true)
         }
         action.backgroundColor = .init(red: 50 / 255, green: 186 / 255, blue: 188 / 255, alpha: 1)
         action.image = UIImage(systemName: "checkmark")

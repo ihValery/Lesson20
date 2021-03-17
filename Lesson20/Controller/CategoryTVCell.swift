@@ -3,7 +3,7 @@ import RealmSwift
 
 class CategoryTVCell: UITableViewCell
 {
-    var tastasksList: Category!
+    var category: Category!
     
     @IBOutlet weak var titleCustom: UILabel!
     @IBOutlet weak var subTitleCustom: UILabel!
@@ -12,15 +12,14 @@ class CategoryTVCell: UITableViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        
     }
     
-    func configure(with tasksList: Category)
+    func configure(with category: Category)
     {
-        let currentTask = tasksList.tasks.filter("isComplete = false")
-        let complitedTask = tasksList.tasks.filter("isComplete = true")
+        let currentTask = category.tasks.filter("isComplete = false")
+        let complitedTask = category.tasks.filter("isComplete = true")
         
-        titleCustom.text = tasksList.name
+        titleCustom.text = category.name
         subTitleCustom.text = "Вывести весь список задач!"
         
         if !currentTask.isEmpty {

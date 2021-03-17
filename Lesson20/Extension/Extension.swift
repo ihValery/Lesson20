@@ -3,25 +3,25 @@ import UIKit
 
 extension CategoryTVC
 {
-    public func alertForAddAndUpdateList(_ listName: Category? = nil, completion: (() -> Void)? = nil)
+    public func alertForAddAndUpdateList(_ categoryName: Category? = nil, completion: (() -> Void)? = nil)
     {
-        let title = listName == nil ? "Новый список" : "Хотите изменить?"
-        let titleButton = listName == nil ? "Добавить" : "Изменить"
+        let title = categoryName == nil ? "Новый список" : "Хотите изменить?"
+        let titleButton = categoryName == nil ? "Добавить" : "Изменить"
         
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Отмена", style: .cancel)
         let save = UIAlertAction(title: titleButton, style: .default) { _ in
             guard let newList = alert.textFields?.first?.text, !newList.isEmpty else { return }
             
-            if let listName = listName {
-                StorageManager.editTasksList(listName, newName: newList)
+            if let categoryName = categoryName {
+                StorageManager.editCategory(categoryName, newName: newList)
                 //Оставил поле пусты - ничего не делаем
                 if completion != nil { completion!() }
             } else {
-                let taskList = Category()
-                taskList.name = newList
+                let category = Category()
+                category.name = newList
                 
-                StorageManager.saveTasksList(taskList)
+                StorageManager.saveCategory(category)
                 self.tableView.insertRows(at: [IndexPath(row: self.category.count - 1, section: 0)], with: .automatic)
             }
         }
@@ -31,8 +31,8 @@ extension CategoryTVC
             tf.placeholder = list.randomElement()
         }
         
-        if let listName = listName {
-            alert.textFields?.first?.text = listName.name
+        if let categoryName = categoryName {
+            alert.textFields?.first?.text = categoryName.name
         }
         
         alert.addAction(cancel)
@@ -87,7 +87,7 @@ extension TasksTVC
                     task.note = note
                 }
                 
-                StorageManager.saveTask(self.currentTasksList, task: task)
+                StorageManager.saveTask(self.currentCategory, task: task)
                 self.sortingOpenOrComplited()
             }
         }

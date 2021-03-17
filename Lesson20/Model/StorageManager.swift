@@ -5,34 +5,34 @@ let realm = try! Realm()
 
 class StorageManager
 {
-    static func saveTasksList(_ tasksLists: Category)
+    static func saveCategory(_ category: Category)
     {
         try! realm.write {
-            realm.add(tasksLists)
+            realm.add(category)
         }
     }
     
-    static func deleteTasksList(_ tasksLists: Category)
+    static func deleteCategory(_ category: Category)
     {
         try! realm.write {
-            let tasks = tasksLists.tasks
+            let tasks = category.tasks
             //Удаляем сразу задачи, а следом и сам список (в ином случаеи упадет приложение)
             realm.delete(tasks)
-            realm.delete(tasksLists)
+            realm.delete(category)
         }
     }
     
-    static func editTasksList(_ tasksLists: Category, newName: String)
+    static func editCategory(_ category: Category, newName: String)
     {
         try! realm.write {
-            tasksLists.name = newName
+            category.name = newName
         }
     }
     
-    static func saveTask(_ tasksLists: Category, task: Task)
+    static func saveTask(_ category: Category, task: Task)
     {
         try! realm.write {
-            tasksLists.tasks.append(task)
+            category.tasks.append(task)
         }
     }
     
@@ -58,10 +58,10 @@ class StorageManager
         }
     }
     
-    static func makeAllDone(_ tasksList: Category)
+    static func makeAllDone(_ category: Category)
     {
         try! realm.write {
-            tasksList.tasks.setValue(true, forKey: "isComplete")
+            category.tasks.setValue(true, forKey: "isComplete")
         }
     }
 }
