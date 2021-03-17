@@ -4,21 +4,32 @@ import RealmSwift
 class CategoryTVC: UITableViewController
 {
     //Results это коллекция - в реальном времени
-    var tasksLists: Results<Category>!
+    var category: Results<Category>!
+    //Сохраняем notificationToken до тех пор, пока вы хотите наблюдать
+    var notificationToken: NotificationToken?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         //Получаем живую коллекцию всех задач realm
-        tasksLists = realm.objects(Category.self)
+        category = realm.objects(Category.self)
         title = "Списки"
         designBackground()
-    }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        tableView.reloadData(with: .automatic)
+        
+        // Realm notification
+        category = realm.objects(Category.self).sorted(byKeyPath: "name")
+        notificationToken = category.observe { (changes) in
+            switch changes {
+                case .initial: break
+                case .update(_, let deletions, let insertions, let modifications):
+                    print("\nDeleted indices: ", deletions)
+                    print("Inserted indices: ", insertions)
+                    print("Modified modifications: ", modifications, "\n")
+                    self.tableView.reloadData()
+                case .error(let error):
+                    fatalError("\(error)")
+            }
+        }
     }
     
     // MARK: - Navigation
@@ -31,9 +42,9 @@ class CategoryTVC: UITableViewController
     @IBAction func didSelectSorted(_ sender: UISegmentedControl)
     {
         if sender.selectedSegmentIndex == 0 {
-            tasksLists = tasksLists.sorted(byKeyPath: "name")
+            category = category.sorted(byKeyPath: "name")
         } else {
-            tasksLists = tasksLists.sorted(byKeyPath: "date")
+            category = category.sorted(byKeyPath: "date")
         }
         tableView.reloadData(with: .automatic)
     }
@@ -42,20 +53,20 @@ class CategoryTVC: UITableViewController
     {
         guard let destination = segue.destination as? TasksTVC else { return }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        destination.currentTasksList = tasksLists[indexPath.row]
+        destination.currentTasksList = category[indexPath.row]
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return tasksLists.count
+        return category.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
      {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTasks", for: indexPath) as! CategoryTVCell
-        let tasksList = tasksLists[indexPath.row]
+        let tasksList = category[indexPath.row]
         
         cell.configure(with: tasksList)
         designCell(with: cell)
@@ -80,7 +91,7 @@ class CategoryTVC: UITableViewController
     func editAction(at indexPath: IndexPath) -> UIContextualAction
     {
         let action = UIContextualAction(style: .normal, title: "edit") { (_, _, completion) in
-            self.alertForAddAndUpdateList(self.tasksLists[indexPath.row]) {
+            self.alertForAddAndUpdateList(self.category[indexPath.row]) {
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
             }
             completion(true)
@@ -93,7 +104,7 @@ class CategoryTVC: UITableViewController
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction
     {
         let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, completion) in
-            StorageManager.deleteTasksList(self.tasksLists[indexPath.row])
+            StorageManager.deleteTasksList(self.category[indexPath.row])
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)
         }
@@ -105,7 +116,7 @@ class CategoryTVC: UITableViewController
     func doneAction(at indexPath: IndexPath) -> UIContextualAction
     {
         let action = UIContextualAction(style: .normal, title: "done") { (_, _, completion) in
-            StorageManager.makeAllDone(self.tasksLists[indexPath.row])
+            StorageManager.makeAllDone(self.category[indexPath.row])
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
             completion(true)
         }
