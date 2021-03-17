@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8015AF18260128760065A2BF /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8015AF17260128760065A2BF /* Extension.swift */; };
+		8015AF2826022B3B0065A2BF /* Extension + UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8015AF2726022B3B0065A2BF /* Extension + UITableViewCell.swift */; };
 		80845FBF25FFA7E300AA4710 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80845FBE25FFA7E300AA4710 /* StorageManager.swift */; };
 		80CCEDD425FF852B002BF099 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDD325FF852B002BF099 /* AppDelegate.swift */; };
 		80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCEDD525FF852B002BF099 /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		8015AF17260128760065A2BF /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		8015AF2726022B3B0065A2BF /* Extension + UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITableViewCell.swift"; sourceTree = "<group>"; };
 		80845FBE25FFA7E300AA4710 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		80CCEDD025FF852B002BF099 /* Lesson20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CCEDD325FF852B002BF099 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				8015AF17260128760065A2BF /* Extension.swift */,
+				8015AF2726022B3B0065A2BF /* Extension + UITableViewCell.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				80CCEDD425FF852B002BF099 /* AppDelegate.swift in Sources */,
 				80845FBF25FFA7E300AA4710 /* StorageManager.swift in Sources */,
 				8015AF18260128760065A2BF /* Extension.swift in Sources */,
+				8015AF2826022B3B0065A2BF /* Extension + UITableViewCell.swift in Sources */,
 				80CCEDED25FF8C07002BF099 /* CategoryTVC.swift in Sources */,
 				80CCEDD625FF852B002BF099 /* SceneDelegate.swift in Sources */,
 			);
