@@ -42,6 +42,21 @@ class StorageManager
         }
     }
     
+    static func editTask(_ task: Task, newName: String, newNote: String)
+    {
+        try! realm.write {
+            task.name = newName
+            task.note = newNote
+        }
+    }
+    
+    static func makeDone(_ task: Task)
+    {
+        try! realm.write {
+            task.isComplete.toggle()
+        }
+    }
+    
     static func makeAllDone(_ tasksList: TasksList)
     {
         try! realm.write {

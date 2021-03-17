@@ -22,7 +22,8 @@ extension CategoryTVC
                 taskList.name = newList
                 
                 StorageManager.saveTasksList(taskList)
-                self.tableView.insertRows(at: [IndexPath(row: self.tasksLists.count - 1, section: 0)], with: .automatic)
+//                self.tableView.insertRows(at: [IndexPath(row: self.tasksLists.count - 1, section: 0)], with: .automatic)
+                self.tableView.reloadData()
             }
         }
         
@@ -62,33 +63,53 @@ extension CategoryTVC
 
 extension TasksTVC
 {
-    public func alertForAddAndUpdateTask()
+    public func alertForAddAndUpdateTask(_ taskName: Task? = nil)
     {
-        let alert = UIAlertController(title: "Новый список", message: nil, preferredStyle: .alert)
+        let title = taskName == nil ? "Новый список" : "Хотите изменить?"
+        let titleButton = taskName == nil ? "Добавить" : "Изменить"
+        
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Отмена", style: .cancel)
-        let save = UIAlertAction(title: "Добавить", style: .default) { _ in
+        let save = UIAlertAction(title: titleButton, style: .default) { _ in
             guard let newTask = alert.textFields?.first?.text, !newTask.isEmpty else { return }
             
-            let task = Task()
-            task.name = newTask
-            
-            if let note = alert.textFields?.last?.text, !note.isEmpty {
-                task.note = note
+            if let taskName = taskName {
+                if let newNote = alert.textFields?.last?.text, !newNote.isEmpty {
+                    StorageManager.editTask(taskName, newName: newTask, newNote: newNote)
+                } else {
+                    StorageManager.editTask(taskName, newName: newTask, newNote: "")
+                }
+                self.sortingOpenOrComplited()
+            } else {
+                let task = Task()
+                task.name = newTask
+                
+                if let note = alert.textFields?.last?.text, !note.isEmpty {
+                    task.note = note
+                }
+                
+                StorageManager.saveTask(self.currentTasksList, task: task)
+                self.sortingOpenOrComplited()
             }
-            
-            StorageManager.saveTask(self.currentTasksList, task: task)
-            self.sortingOpenOrComplited()
         }
         
         alert.addTextField { tf in
             let list = ["Яйцо", "Молоко", "Печенька", "Вкусняшка"]
             tf.placeholder = list.randomElement()
+            
+            if let taskName = taskName {
+                alert.textFields?.first?.text = taskName.name
+            }
         }
         alert.addTextField { tf in
             let list = ["Количество шт.", "Описание"]
             tf.placeholder = list.randomElement()
+            
+            if let taskName = taskName {
+                alert.textFields?.last?.text = taskName.note
+            }
         }
-        
+
         alert.addAction(cancel)
         alert.addAction(save)
         self.present(alert, animated: true)

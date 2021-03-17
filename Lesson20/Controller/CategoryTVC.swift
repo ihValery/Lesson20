@@ -28,15 +28,16 @@ class CategoryTVC: UITableViewController
         alertForAddAndUpdateList()
     }
     
-//    @IBAction func didSelectSorted(_ sender: UISegmentedControl)
-//    {
-//        if sender.selectedSegmentIndex == 0 {
-//            tasksLists = tasksLists.sorted(byKeyPath: "name")
-//        } else {
-//            tasksLists = tasksLists.sorted(byKeyPath: "date", ascending: false)
-//        }
-//        tableView.reloadData()
-//    }
+    @IBAction func didSelectSorted(_ sender: UISegmentedControl)
+    {
+        if sender.selectedSegmentIndex == 0 {
+            tasksLists = tasksLists.sorted(byKeyPath: "name")
+        } else {
+            tasksLists = tasksLists.sorted(byKeyPath: "date")
+        }
+        
+        tableView.reloadData()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -85,7 +86,7 @@ class CategoryTVC: UITableViewController
             }
             completion(true)
         }
-        action.backgroundColor = #colorLiteral(red: 0.1961711347, green: 0.7188495994, blue: 0.4251968861, alpha: 1)
+        action.backgroundColor = .init(red: 50 / 255, green: 183 / 255, blue: 108 / 255, alpha: 1)
         action.image = UIImage(systemName: "rectangle.and.pencil.and.ellipsis")
         return action
     }
@@ -97,7 +98,7 @@ class CategoryTVC: UITableViewController
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)
         }
-        action.backgroundColor = #colorLiteral(red: 0.9508683085, green: 0.3361024261, blue: 0.3030498922, alpha: 1)
+        action.backgroundColor = .init(red: 242 / 255, green: 86 / 255, blue: 77 / 255, alpha: 1)
         action.image = UIImage(systemName: "trash")
         return action
     }
@@ -109,7 +110,7 @@ class CategoryTVC: UITableViewController
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
             completion(true)
         }
-        action.backgroundColor = #colorLiteral(red: 0.1957473755, green: 0.7305807471, blue: 0.7368780971, alpha: 1)
+        action.backgroundColor = .init(red: 50 / 255, green: 186 / 255, blue: 188 / 255, alpha: 1)
         action.image = UIImage(systemName: "checkmark")
         return action
     }
