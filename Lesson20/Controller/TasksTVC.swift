@@ -11,6 +11,7 @@ class TasksTVC: UITableViewController
     
     private var openTasks: Results<Task>!
     private var completedTasks: Results<Task>!
+    private var tasksBySection: Task!
     
     override func viewDidLoad()
     {
@@ -53,25 +54,21 @@ class TasksTVC: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem", for: indexPath)
+        tasksBySection(at: indexPath)
         
-        var task: Task!
-        task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
+        cell.textLabel?.text = tasksBySection.name
+        cell.detailTextLabel?.text = tasksBySection.note
         
-        cell.textLabel?.text = task.name
-        cell.detailTextLabel?.text = task.note
-        
-        cell.accessoryType = task.isComplete ? .checkmark : .none
+        cell.accessoryType = tasksBySection.isComplete ? .checkmark : .none
         designCell(with: cell)
         
         return cell
     }
     
-//    func sortedTasksBySections(at indexPath: IndexPath) -> [Task]
-//    {
-//        var task: Task!
-//        task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
-//        return task
-//    }
+    func tasksBySection(at indexPath: IndexPath)
+    {
+        tasksBySection = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
+    }
     
     //MARK: - Table view delegate
     
@@ -94,12 +91,9 @@ class TasksTVC: UITableViewController
     
     func editAction(at indexPath: IndexPath) -> UIContextualAction
     {
-        var task: Task!
-        task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
-        
-        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, completion) in
-            self.alertForAddAndUpdateTask(task)
-            completion(true)
+        tasksBySection(at: indexPath)
+        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, _) in
+            self.alertForAddAndUpdateTask(self.tasksBySection)
         }
         action.backgroundColor = .init(red: 50 / 255, green: 183 / 255, blue: 108 / 255, alpha: 1)
         action.image = UIImage(systemName: "rectangle.and.pencil.and.ellipsis")
@@ -108,13 +102,10 @@ class TasksTVC: UITableViewController
     
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction
     {
-        var task: Task!
-        task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
-        
-        let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, completion) in
-            StorageManager.deleteTask(task)
+        tasksBySection(at: indexPath)
+        let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, _) in
+            StorageManager.deleteTask(self.tasksBySection)
             self.sortingOpenOrComplited()
-            completion(true)
         }
         action.backgroundColor = .init(red: 242 / 255, green: 86 / 255, blue: 77 / 255, alpha: 1)
         action.image = UIImage(systemName: "trash")
@@ -123,13 +114,10 @@ class TasksTVC: UITableViewController
     
     func doneTask(at indexPath: IndexPath) -> UIContextualAction
     {
-        var task: Task!
-        task = indexPath.section == 0 ? openTasks[indexPath.row] : completedTasks[indexPath.row]
-        
-        let action = UIContextualAction(style: .normal, title: "done") { (_, _, completion) in
-            StorageManager.makeDone(task)
+        tasksBySection(at: indexPath)
+        let action = UIContextualAction(style: .normal, title: "done") { (_, _, _) in
+            StorageManager.makeDone(self.tasksBySection)
             self.sortingOpenOrComplited()
-            completion(true)
         }
         action.backgroundColor = .init(red: 50 / 255, green: 186 / 255, blue: 188 / 255, alpha: 1)
         action.image = UIImage(systemName: "checkmark")
