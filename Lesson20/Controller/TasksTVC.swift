@@ -98,8 +98,9 @@ class TasksTVC: UITableViewController
     func editAction(at indexPath: IndexPath) -> UIContextualAction
     {
         tasksBySection(at: indexPath)
-        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, _) in
+        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, completion) in
             self.alertForAddAndUpdateTask(self.tasksBySection)
+            completion(true)
         }
         action.backgroundColor = .init(red: 50 / 255, green: 183 / 255, blue: 108 / 255, alpha: 1)
         action.image = UIImage(systemName: "rectangle.and.pencil.and.ellipsis")

@@ -15,7 +15,7 @@ extension CategoryTVC
             
             if let categoryName = categoryName {
                 StorageManager.editCategory(categoryName, newName: newList)
-                //Оставил поле пусты - ничего не делаем
+                //Оставил поле пустым - ничего не делаем
                 if completion != nil { completion!() }
             } else {
                 let category = Category()
@@ -37,7 +37,19 @@ extension CategoryTVC
         
         alert.addAction(cancel)
         alert.addAction(save)
-        self.present(alert, animated: true)
+        present(alert, animated: true)
+    }
+    
+    public func alertDeleteCategory(_ categoryName: Category, indexPath: IndexPath)
+    {
+        let title = "Удалить список\n\(categoryName.name)?"
+        let alert = UIAlertController(title: title, message: "Все задачи внутри списка пропадут.\n Это действие нельзя отменить!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { _ in
+            StorageManager.deleteCategory(categoryName)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }))
+        present(alert, animated: true)
     }
     
     public func designBackground()
@@ -157,7 +169,7 @@ func designCell(with cell: CategoryTVCell)
     cell.detalCustom.layer.shadowColor = .init(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
 }
 
-public extension StringProtocol
+extension StringProtocol
 {
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
 }

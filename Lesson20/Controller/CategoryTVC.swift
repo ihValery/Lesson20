@@ -90,10 +90,11 @@ class CategoryTVC: UITableViewController
     
     func editAction(at indexPath: IndexPath) -> UIContextualAction
     {
-        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, _) in
+        let action = UIContextualAction(style: .normal, title: "edit") { (_, _, completion) in
             self.alertForAddAndUpdateList(self.category[indexPath.row]) {
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
             }
+            completion(true)
         }
         action.backgroundColor = .init(red: 50 / 255, green: 183 / 255, blue: 108 / 255, alpha: 1)
         action.image = UIImage(systemName: "rectangle.and.pencil.and.ellipsis")
@@ -102,9 +103,9 @@ class CategoryTVC: UITableViewController
     
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction
     {
-        let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, _) in
-            StorageManager.deleteCategory(self.category[indexPath.row])
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, completion) in
+            self.alertDeleteCategory(self.category[indexPath.row], indexPath: indexPath)
+            completion(true)
         }
         action.backgroundColor = .init(red: 242 / 255, green: 86 / 255, blue: 77 / 255, alpha: 1)
         action.image = UIImage(systemName: "trash")
