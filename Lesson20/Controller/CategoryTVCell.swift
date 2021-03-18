@@ -18,9 +18,26 @@ class CategoryTVCell: UITableViewCell
     {
         let currentTask = category.tasks.filter("isComplete = false")
         let complitedTask = category.tasks.filter("isComplete = true")
+        var allTaskString = ""
         
         titleCustom.text = category.name
-        subTitleCustom.text = "Вывести весь список задач!"
+        
+        
+        
+        func printArray()
+        {
+//            var allTaskString = ""
+            for item in currentTask {
+                allTaskString += "\(item.name): "
+//                print(item.name)
+            }
+            print(allTaskString)
+        }
+        printArray()
+        
+        subTitleCustom.text = allTaskString
+        
+        
         
         if !currentTask.isEmpty {
             detalCustom.text = "\(currentTask.count)"
