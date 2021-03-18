@@ -5,7 +5,7 @@ class TasksTVC: UITableViewController
 {
     var currentCategory: Category! {
         didSet {
-            self.title = currentCategory.name
+            self.title = currentCategory.name.firstCapitalized
         }
     }
     
@@ -56,8 +56,8 @@ class TasksTVC: UITableViewController
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem", for: indexPath)
         tasksBySection(at: indexPath)
         
-        cell.textLabel?.text = tasksBySection.name
-        cell.detailTextLabel?.text = tasksBySection.note
+        cell.textLabel?.text = tasksBySection.name.firstCapitalized
+        cell.detailTextLabel?.text = tasksBySection.note.lowercased()
         
         cell.accessoryType = tasksBySection.isComplete ? .checkmark : .none
         designCell(with: cell)
@@ -75,6 +75,13 @@ class TasksTVC: UITableViewController
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        tasksBySection(at: indexPath)
+        StorageManager.makeDone(tasksBySection)
+        sortingOpenOrComplited()
     }
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
