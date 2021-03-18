@@ -42,7 +42,8 @@ extension CategoryTVC
     
     public func alertDeleteCategory(_ categoryName: Category, indexPath: IndexPath)
     {
-        let alert = UIAlertController(title: "Удалить список?", message: "Все задачи внутри списка удалятся. Это действие нельзя отменить!", preferredStyle: .actionSheet)
+        let title = "Удалить список\n\(categoryName.name)?"
+        let alert = UIAlertController(title: title, message: "Все задачи внутри списка пропадут.\n Это действие нельзя отменить!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { _ in
             StorageManager.deleteCategory(categoryName)
