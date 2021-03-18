@@ -9,35 +9,23 @@ class CategoryTVCell: UITableViewCell
     @IBOutlet weak var subTitleCustom: UILabel!
     @IBOutlet weak var detalCustom: UILabel!
     
-    override func awakeFromNib()
-    {
-        super.awakeFromNib()
-    }
-    
     func configure(with category: Category)
     {
         let currentTask = category.tasks.filter("isComplete = false")
         let complitedTask = category.tasks.filter("isComplete = true")
-        var allTaskString = ""
         
-        titleCustom.text = category.name
-        
-        
-        
-        func printArray()
+        func printArray() -> String
         {
-//            var allTaskString = ""
+            var allTaskString = ""
             for item in currentTask {
-                allTaskString += "\(item.name): "
-//                print(item.name)
+                allTaskString += "\(item.name.firstCapitalized). "
             }
             print(allTaskString)
+            return allTaskString
         }
-        printArray()
         
-        subTitleCustom.text = allTaskString
-        
-        
+        titleCustom.text = category.name.firstCapitalized
+        subTitleCustom.text = printArray()
         
         if !currentTask.isEmpty {
             detalCustom.text = "\(currentTask.count)"
