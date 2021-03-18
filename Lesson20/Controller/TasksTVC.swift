@@ -60,7 +60,6 @@ class TasksTVC: UITableViewController
         cell.detailTextLabel?.text = tasksBySection.note.lowercased()
         
         cell.accessoryType = tasksBySection.isComplete ? .checkmark : .none
-        designCell(with: cell)
         
         return cell
     }
