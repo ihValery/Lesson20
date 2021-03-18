@@ -139,12 +139,22 @@ extension TasksTVC
     }
 }
 
-public func designCell(with cell: UITableViewCell)
+func designCell(with cell: CategoryTVCell)
 {
-    cell.textLabel?.layer.shadowOffset = CGSize(width: 1, height: 1)
-    cell.textLabel?.layer.shadowRadius = 7
-    cell.textLabel?.layer.shadowOpacity = 1
-    cell.textLabel?.layer.shadowColor = .init(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
+    cell.titleCustom.layer.shadowOffset = CGSize(width: 1, height: 1)
+    cell.titleCustom.layer.shadowRadius = 7
+    cell.titleCustom.layer.shadowOpacity = 1
+    cell.titleCustom.layer.shadowColor = .init(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
+    
+    cell.subTitleCustom.layer.shadowOffset = CGSize(width: 1, height: 1)
+    cell.subTitleCustom.layer.shadowRadius = 7
+    cell.subTitleCustom.layer.shadowOpacity = 1
+    cell.subTitleCustom.layer.shadowColor = .init(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
+    
+    cell.detalCustom.layer.shadowOffset = CGSize(width: 1, height: 1)
+    cell.detalCustom.layer.shadowRadius = 7
+    cell.detalCustom.layer.shadowOpacity = 1
+    cell.detalCustom.layer.shadowColor = .init(red: 224 / 255, green: 224 / 255, blue: 224 / 255, alpha: 1)
 }
 
 public extension StringProtocol
@@ -152,8 +162,18 @@ public extension StringProtocol
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
 }
 
-extension UITableView {
-    func reloadData(with animation: UITableView.RowAnimation) {
+extension CategoryTVC
+{
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return  70 //UITableView.automaticDimension
+    }
+}
+
+extension UITableView
+{
+    func reloadData(with animation: UITableView.RowAnimation)
+    {
         reloadSections(IndexSet(integersIn: 0..<numberOfSections), with: animation)
     }
 }
