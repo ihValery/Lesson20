@@ -76,7 +76,7 @@ extension TasksTVC
 {
     public func alertForAddAndUpdateTask(_ taskName: Task? = nil)
     {
-        let title = taskName == nil ? "Новый список" : "Хотите изменить?"
+        let title = taskName == nil ? "Новая задача" : "Хотите изменить?"
         let titleButton = taskName == nil ? "Добавить" : "Изменить"
         
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
