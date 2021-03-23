@@ -181,11 +181,3 @@ extension CategoryTVC
         return  70 //UITableView.automaticDimension
     }
 }
-
-extension UITableView
-{
-    func reloadData(with animation: UITableView.RowAnimation)
-    {
-        reloadSections(IndexSet(integersIn: 0..<numberOfSections), with: animation)
-    }
-}

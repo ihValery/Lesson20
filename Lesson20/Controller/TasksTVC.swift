@@ -27,7 +27,7 @@ class TasksTVC: UITableViewController
         openTasks = currentCategory.tasks.filter("isComplete = false")
         completedTasks = currentCategory.tasks.filter("isComplete = true")
         
-        tableView.reloadData(with: .automatic)
+        tableView.reloadData()
     }
     @IBAction func addTaskAction(_ sender: Any)
     {

@@ -46,7 +46,7 @@ class CategoryTVC: UITableViewController
         } else {
             category = category.sorted(byKeyPath: "date")
         }
-        tableView.reloadData(with: .automatic)
+        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
