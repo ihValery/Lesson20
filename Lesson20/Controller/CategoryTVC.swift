@@ -17,7 +17,8 @@ class CategoryTVC: UITableViewController
         designBackground()
         
         //Realm уведомление
-        category = realm.objects(Category.self)//.sorted(byKeyPath: "name")
+        category = realm.objects(Category.self).sorted(byKeyPath: "name")
+        
         notificationToken = category.observe { (changes) in
             switch changes {
                 case .initial: break
