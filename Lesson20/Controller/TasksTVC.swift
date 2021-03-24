@@ -122,12 +122,15 @@ class TasksTVC: UITableViewController
     func doneTask(at indexPath: IndexPath) -> UIContextualAction
     {
         tasksBySection(at: indexPath)
-        let action = UIContextualAction(style: .normal, title: "done") { (_, _, _) in
+        //let title = indexPath.section == 0 ? "done" : "undone"
+        let action = UIContextualAction(style: .normal, title: "undone") { (_, _, _) in
             StorageManager.makeDone(self.tasksBySection)
             self.sortingOpenOrComplited()
         }
         action.backgroundColor = .init(red: 50 / 255, green: 186 / 255, blue: 188 / 255, alpha: 1)
-        action.image = UIImage(systemName: "checkmark")
+        if indexPath.section == 0 {
+            action.image = UIImage(systemName: "checkmark")
+        }
         return action
     }
 }
