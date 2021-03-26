@@ -5,32 +5,17 @@ class CategoryTVC: UITableViewController
 {
     //Results это коллекция - в реальном времени
     var category: Results<Category>!
-    //Сохраняем notificationToken до тех пор, пока вы хотите наблюдать
-    var notificationToken: NotificationToken?
+    var notification = ObserveNotification()
     
-    override func viewDidLoad()
+    override func viewWillAppear(_ animated: Bool)
     {
-        super.viewDidLoad()
+        super.viewWillAppear(animated)
         //Получаем живую коллекцию всех задач realm
         category = realm.objects(Category.self)
         title = "Списки"
+        notification.changeCollection()
+        tableView.reloadData()
         designBackground()
-        
-        //Realm уведомление
-        category = realm.objects(Category.self).sorted(byKeyPath: "name")
-        
-        notificationToken = category.observe { (changes) in
-            switch changes {
-                case .initial: break
-                case .update(_, let deletions, let insertions, let modifications):
-                    print("\nDeleted indices: ", deletions)
-                    print("Inserted indices: ", insertions)
-                    print("Modified modifications: ", modifications, "\n")
-                    self.tableView.reloadData()
-                case .error(let error):
-                    fatalError("\(error)")
-            }
-        }
     }
     
     // MARK: - Navigation
@@ -117,7 +102,8 @@ class CategoryTVC: UITableViewController
     {
         let action = UIContextualAction(style: .normal, title: "done") { (_, _, _) in
             StorageManager.makeAllDone(self.category[indexPath.row])
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            self.tableView.reloadData()
+//            self.tableView.reloadRows(at: [indexPath], with: .automatic)
         }
         action.backgroundColor = .init(red: 50 / 255, green: 186 / 255, blue: 188 / 255, alpha: 1)
         action.image = UIImage(systemName: "checkmark")
