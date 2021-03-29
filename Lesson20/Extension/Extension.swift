@@ -40,18 +40,6 @@ extension CategoryTVC
         present(alert, animated: true)
     }
     
-    public func alertDeleteCategory(_ categoryName: Category, indexPath: IndexPath)
-    {
-        let title = "Удалить список\n\(categoryName.name)?"
-        let alert = UIAlertController(title: title, message: "Все задачи внутри списка пропадут.\n Это действие нельзя отменить!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { _ in
-            StorageManager.deleteCategory(categoryName)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }))
-        present(alert, animated: true)
-    }
-    
     public func designBackground()
     {
         navigationController?.navigationBar.barTintColor =

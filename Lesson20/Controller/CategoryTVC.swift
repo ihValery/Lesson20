@@ -1,39 +1,42 @@
 import UIKit
 import RealmSwift
 
-class CategoryTVC: UITableViewController
+protocol ReloadTableDelegate: class
+{
+    func tableReloadData()
+}
+
+class CategoryTVC: UITableViewController, ReloadTableDelegate
 {
     //Results это коллекция - в реальном времени
     var category: Results<Category>!
-    //Сохраняем notificationToken до тех пор, пока вы хотите наблюдать
-    var notificationToken: NotificationToken?
-    
+    var notification = ObserveNotification()
+    var alertDelete = AlertDeleteCategory()
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
+//        tableView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
         //Получаем живую коллекцию всех задач realm
         category = realm.objects(Category.self)
         title = "Списки"
+        notification.changeCollection()
+        tableView.reloadData()
         designBackground()
-        
-        //Realm уведомление
-        category = realm.objects(Category.self).sorted(byKeyPath: "name")
-        
-        notificationToken = category.observe { (changes) in
-            switch changes {
-                case .initial: break
-                case .update(_, let deletions, let insertions, let modifications):
-                    print("\nDeleted indices: ", deletions)
-                    print("Inserted indices: ", insertions)
-                    print("Modified modifications: ", modifications, "\n")
-                    self.tableView.reloadData()
-                case .error(let error):
-                    fatalError("\(error)")
-            }
-        }
     }
     
     // MARK: - Navigation
+    
+    func tableReloadData()
+    {
+        print("Хочу сюда попасть!")
+        tableView.reloadData()
+    }
     
     @IBAction func addAction(_ sender: Any)
     {
@@ -68,7 +71,6 @@ class CategoryTVC: UITableViewController
      {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTasks", for: indexPath) as! CategoryTVCell
         let categoryIndex = category[indexPath.row]
-        
         cell.configure(with: categoryIndex)
         designCell(with: cell)
         return cell
@@ -86,6 +88,7 @@ class CategoryTVC: UITableViewController
         let edit = editAction(at: indexPath)
         let delete = deleteAction(at: indexPath)
         let done = doneAction(at: indexPath)
+
         return UISwipeActionsConfiguration(actions: [delete, edit, done])
     }
     
@@ -104,12 +107,15 @@ class CategoryTVC: UITableViewController
     
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction
     {
+        let alert = AlertDeleteCategory()
         let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, completion) in
-            self.alertDeleteCategory(self.category[indexPath.row], indexPath: indexPath)
+            alert.showAlert(self.category[indexPath.row], indexPath: indexPath, on: self)
             completion(true)
         }
         action.backgroundColor = .init(red: 242 / 255, green: 86 / 255, blue: 77 / 255, alpha: 1)
         action.image = UIImage(systemName: "trash")
+        //там где я его созда и подписываю
+        alert.delegate = self
         return action
     }
     
@@ -117,7 +123,8 @@ class CategoryTVC: UITableViewController
     {
         let action = UIContextualAction(style: .normal, title: "done") { (_, _, _) in
             StorageManager.makeAllDone(self.category[indexPath.row])
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            self.tableView.reloadData()
+//            self.tableView.reloadRows(at: [indexPath], with: .automatic)
         }
         action.backgroundColor = .init(red: 50 / 255, green: 186 / 255, blue: 188 / 255, alpha: 1)
         action.image = UIImage(systemName: "checkmark")
