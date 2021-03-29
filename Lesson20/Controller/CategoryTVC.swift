@@ -1,11 +1,23 @@
 import UIKit
 import RealmSwift
 
-class CategoryTVC: UITableViewController
+protocol ReloadTableDelegate: class
+{
+    func tableReloadData()
+}
+
+class CategoryTVC: UITableViewController, ReloadTableDelegate
 {
     //Results это коллекция - в реальном времени
     var category: Results<Category>!
     var notification = ObserveNotification()
+    var alertDelete = AlertDeleteCategory()
+
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+//        tableView.delegate = self
+    }
     
     override func viewWillAppear(_ animated: Bool)
     {
@@ -19,6 +31,12 @@ class CategoryTVC: UITableViewController
     }
     
     // MARK: - Navigation
+    
+    func tableReloadData()
+    {
+        print("Хочу сюда попасть!")
+        tableView.reloadData()
+    }
     
     @IBAction func addAction(_ sender: Any)
     {
@@ -53,7 +71,6 @@ class CategoryTVC: UITableViewController
      {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTasks", for: indexPath) as! CategoryTVCell
         let categoryIndex = category[indexPath.row]
-        
         cell.configure(with: categoryIndex)
         designCell(with: cell)
         return cell
@@ -71,6 +88,7 @@ class CategoryTVC: UITableViewController
         let edit = editAction(at: indexPath)
         let delete = deleteAction(at: indexPath)
         let done = doneAction(at: indexPath)
+
         return UISwipeActionsConfiguration(actions: [delete, edit, done])
     }
     
@@ -89,12 +107,15 @@ class CategoryTVC: UITableViewController
     
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction
     {
+        let alert = AlertDeleteCategory()
         let action = UIContextualAction(style: .destructive, title: "delete") { (_, _, completion) in
-            self.alertDeleteCategory(self.category[indexPath.row], indexPath: indexPath)
+            alert.showAlert(self.category[indexPath.row], indexPath: indexPath, on: self)
             completion(true)
         }
         action.backgroundColor = .init(red: 242 / 255, green: 86 / 255, blue: 77 / 255, alpha: 1)
         action.image = UIImage(systemName: "trash")
+        //там где я его созда и подписываю
+        alert.delegate = self
         return action
     }
     
