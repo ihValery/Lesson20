@@ -162,10 +162,10 @@ extension StringProtocol
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
 }
 
-extension CategoryTVC
-{
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return  70 //UITableView.automaticDimension
-    }
-}
+//extension CategoryTVC
+//{
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+//    {
+//        return  70 //UITableView.automaticDimension
+//    }
+//}

@@ -24,7 +24,6 @@ class CategoryTVC: UITableViewController, ReloadTableDelegate
         notification.changeCollection()
         
         designBackground()
-        
     }
 
     // MARK: - Navigation
@@ -74,10 +73,10 @@ class CategoryTVC: UITableViewController, ReloadTableDelegate
     
     //MARK: - Table view delegate
     
-//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-//    {
-//        return true
-//    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 70
+    }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
