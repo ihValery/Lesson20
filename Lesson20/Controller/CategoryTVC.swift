@@ -16,23 +16,17 @@ class CategoryTVC: UITableViewController, ReloadTableDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-//        tableView.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
         //Получаем живую коллекцию всех задач realm
         category = realm.objects(Category.self)
         title = "Списки"
-
-        notification.reloadTableDelegate = self
         
+        notification.reloadTableDelegate = self
         notification.changeCollection()
-//        tableView.reloadData()
+        
         designBackground()
+        
     }
-    
+
     // MARK: - Navigation
     
     func tableReloadData()
@@ -80,17 +74,17 @@ class CategoryTVC: UITableViewController, ReloadTableDelegate
     
     //MARK: - Table view delegate
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-    {
-        return true
-    }
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+//    {
+//        return true
+//    }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let edit = editAction(at: indexPath)
         let delete = deleteAction(at: indexPath)
         let done = doneAction(at: indexPath)
-
+        
         return UISwipeActionsConfiguration(actions: [delete, edit, done])
     }
     
@@ -116,8 +110,8 @@ class CategoryTVC: UITableViewController, ReloadTableDelegate
         }
         action.backgroundColor = .init(red: 242 / 255, green: 86 / 255, blue: 77 / 255, alpha: 1)
         action.image = UIImage(systemName: "trash")
-        //там где я его созда и подписываю
-        alert.delegate = self
+        //там где я его создаю там и подписываю
+        alert.reloadTableDelegate = self
         return action
     }
     
@@ -125,8 +119,7 @@ class CategoryTVC: UITableViewController, ReloadTableDelegate
     {
         let action = UIContextualAction(style: .normal, title: "done") { (_, _, _) in
             StorageManager.makeAllDone(self.category[indexPath.row])
-            self.tableView.reloadData()
-//            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            self.tableView.reloadRows(at: [indexPath], with: .fade)
         }
         action.backgroundColor = .init(red: 50 / 255, green: 186 / 255, blue: 188 / 255, alpha: 1)
         action.image = UIImage(systemName: "checkmark")
