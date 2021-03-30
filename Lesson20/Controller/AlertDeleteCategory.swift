@@ -3,7 +3,7 @@ import UIKit
 class AlertDeleteCategory
 {
     //не использовать СИСТЕМНЫЕ именна
-    weak var delegate: ReloadTableDelegate?
+    weak var reloadTableDelegate: ReloadTableDelegate?
     
     func showAlert(_ categoryName: Category, indexPath: IndexPath, on controller: UIViewController)
     {
@@ -12,11 +12,7 @@ class AlertDeleteCategory
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { _ in
             StorageManager.deleteCategory(categoryName)
-            
-            //
-            self.delegate?.tableReloadData()
-            print("Проверка")
-            
+            self.reloadTableDelegate?.tableReloadData()
         }))
         controller.present(alert, animated: true)
     }
