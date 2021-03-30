@@ -25,8 +25,11 @@ class CategoryTVC: UITableViewController, ReloadTableDelegate
         //Получаем живую коллекцию всех задач realm
         category = realm.objects(Category.self)
         title = "Списки"
+
+        notification.reloadTableDelegate = self
+        
         notification.changeCollection()
-        tableView.reloadData()
+//        tableView.reloadData()
         designBackground()
     }
     
@@ -34,7 +37,6 @@ class CategoryTVC: UITableViewController, ReloadTableDelegate
     
     func tableReloadData()
     {
-        print("Хочу сюда попасть!")
         tableView.reloadData()
     }
     
