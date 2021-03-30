@@ -3,6 +3,8 @@ import RealmSwift
 
 class ObserveNotification
 {
+    weak var reloadTableDelegate: ReloadTableDelegate?
+    
     var notificationToken: NotificationToken?
     var category = realm.objects(Category.self)
     
@@ -15,6 +17,7 @@ class ObserveNotification
                     print("\nDeleted indices: ", deletions)
                     print("Inserted indices: ", insertions)
                     print("Modified modifications: ", modifications, "\n")
+                    self.reloadTableDelegate?.tableReloadData()
                 case .error(let error):
                     fatalError("\(error)")
             }
